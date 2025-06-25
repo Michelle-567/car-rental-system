@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .receipt {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        .header {
+            text-align: center;
+            color: #003049;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <h2 class="header">Car2Go Rental Receipt</h2>
+        <div class="details">
+            <p><strong>Car:</strong> {{ rental.car.name }}</p>
+            <p><strong>Rented By:</strong> {{ rental.user.username }}</p>
+            <p><strong>Start Date:</strong> {{ rental.start_date }}</p>
+            <p><strong>End Date:</strong> {{ rental.end_date }}</p>
+            <p><strong>Total Cost:</strong> Ksh {{ rental.total_cost }}</p>
+        </div>
+        <div class="footer">
+            Thank you for choosing Car2Go Kenya! Safe travels 🚗<br>
+            <strong>Need help?</strong> Email us: support@car2go.co.ke
+        </div>
+    </div>
+</body>
+
+</html>

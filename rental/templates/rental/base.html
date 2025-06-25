@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Car2Go | Rent Your Dream Car</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .navbar {
+            background-color: #003049;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fcbf49 !important;
+            font-size: 1.7rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fcbf49 !important;
+        }
+
+        .btn-primary {
+            background-color: #fcbf49;
+            border-color: #fcbf49;
+            color: #003049;
+        }
+
+        .btn-primary:hover {
+            background-color: #ffdd71;
+            border-color: #ffdd71;
+        }
+
+        footer {
+            background: #003049;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer h5 {
+            color: #fcbf49;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        footer p,
+        footer ul,
+        footer li {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fcbf49;
+        }
+
+        .social-icons a {
+            font-size: 1rem;
+            margin-right: 10px;
+            color: #fcbf49;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🚗 NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Car2Go</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="{% url 'car_list' %}" class="nav-link">Browse Cars</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a href="{% url 'my_rentals' %}" class="nav-link">My Rentals</a></li>
+                    {% if user.is_staff %}
+                    <li class="nav-item"><a href="{% url 'admin_dashboard' %}" class="nav-link">Admin</a></li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><span class="nav-link text-white">Hi, {{ user.username }}</span></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 📦 CONTENT -->
+    <main class="flex-grow-1">
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- 🦶 FOOTER -->
+    {% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-md-4 mb-3">
+                    <h5>Car2Go</h5>
+                    <p>Drive your dream car. Fast. Affordable. Trusted.</p>
+                    <div class="social-icons mt-2">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'car_list' %}">Browse Cars</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'my_rentals' %}">My Rentals</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact</h5>
+                    <p><i class="bi bi-geo-alt-fill"></i> Nairobi, Kenya</p>
+                    <p><i class="bi bi-envelope-fill"></i> info@car2go.co.ke</p>
+                    <p><i class="bi bi-telephone-fill"></i> +254 741 401336</p>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <small>&copy; {{ now.year }} Car2Go Kenya. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

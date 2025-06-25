@@ -1,0 +1,179 @@
+{% extends 'rental/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .hero-video {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .hero-video video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.55);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 3.5rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-overlay p {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-overlay a.btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #fcbf49;
+        margin-bottom: 15px;
+    }
+
+    .testimonial {
+        background: #ffffff;
+        border-left: 5px solid #fcbf49;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial small {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .counter-box {
+        background: #003049;
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .counter-box h3 {
+        font-size: 2rem;
+        margin: 10px 0;
+    }
+
+    footer {
+        padding: 20px 0;
+        /* Reduced height */
+    }
+</style>
+
+<!-- 🎥 Hero Section -->
+<div class="hero-video">
+    <video autoplay muted loop>
+        <source src="{% static 'videos/car_drive.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay">
+        <h1>Welcome to Car2Go</h1>
+        <p>Drive your dream car today. Easy, fast, and affordable.</p>
+        <a href="{% url 'car_list' %}" class="btn btn-primary">Browse Cars</a>
+    </div>
+</div>
+
+<!-- 🚘 Why Choose Us -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Why Choose Car2Go?</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
+                <h5>Instant Booking</h5>
+                <p>Book online, get confirmation in seconds. No paperwork.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon"><i class="bi bi-coin"></i></div>
+                <h5>Great Rates</h5>
+                <p>Budget or luxury, we give you the best value guaranteed.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+                <h5>Clean & Safe</h5>
+                <p>All cars are maintained and sanitized regularly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 🔢 Counter Section -->
+<section class="counter-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>20+</h3>
+                <p>Cars Available</p>
+            </div>
+            <div class="col-md-3">
+                <h3>2,00+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="col-md-3">
+                <h3>50+</h3>
+                <p>Pickup Locations</p>
+            </div>
+            <div class="col-md-3">
+                <h3>5 mins</h3>
+                <p>Average Booking Time</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 💬 Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Clients Say</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="testimonial">
+                    “Booking was smooth, the car was spotless, and customer care was amazing. Would definitely rent
+                    again!”
+                    <small>– Cynthia N., Nairobi</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testimonial">
+                    “I picked a Prado for a wedding. It was delivered on time and returned easily. 10/10 service.”
+                    <small>– Kevin M., Kiambu</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

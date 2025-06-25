@@ -1,0 +1,43 @@
+{% extends 'rental/base.html' %}
+{% block content %}
+<div class="container my-5 d-flex justify-content-center">
+    <div id="receipt-content" class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
+        <div class="card-body text-center">
+            <h2 class="card-title mb-4 text-success"><i class="bi bi-check-circle-fill"></i> Rental Receipt</h2>
+
+            <ul class="list-group list-group-flush text-start">
+                <li class="list-group-item"><strong>🚗 Car:</strong> {{ rental.car.name }}</li>
+                <li class="list-group-item"><strong>👤 Rented By:</strong> {{ rental.user.username }}</li>
+                <li class="list-group-item"><strong>📅 Start Date:</strong> {{ rental.start_date }}</li>
+                <li class="list-group-item"><strong>📅 End Date:</strong> {{ rental.end_date }}</li>
+                <li class="list-group-item"><strong>💰 Total Cost:</strong> Ksh {{ rental.total_cost }}</li>
+            </ul>
+
+            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'home' %}" class="btn btn-primary">
+                    <i class="bi bi-house-door-fill"></i> Back to Home
+                </a>
+                <button onclick="window.print()" class="btn btn-outline-secondary">
+                    <i class="bi bi-printer-fill"></i> Print Receipt
+                </button>
+                <button onclick="downloadReceipt()" class="btn btn-outline-success">
+                    <i class="bi bi-download"></i> Download
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function downloadReceipt() {
+        const receipt = document.getElementById("receipt-content").innerHTML;
+        const blob = new Blob([receipt], { type: 'text/html' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'rental_receipt.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+{% endblock %}

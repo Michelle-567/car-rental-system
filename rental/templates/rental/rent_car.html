@@ -1,0 +1,32 @@
+{% extends 'rental/base.html' %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">🚗 Rent {{ car.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="start_date" class="form-label">Start Date</label>
+                            {{ form.start_date }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="end_date" class="form-label">End Date</label>
+                            {{ form.end_date }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Pickup Location</label>
+                            {{ form.location }}
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">✅ Confirm Rental</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

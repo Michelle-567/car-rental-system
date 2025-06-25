@@ -1,0 +1,195 @@
+{% extends 'rental/base.html' %}
+{% block content %}
+
+<style>
+    .section-title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #003049;
+    }
+
+    .section-divider {
+        height: 4px;
+        width: 60px;
+        background-color: #fcbf49;
+        margin: 0 auto 30px auto;
+        border-radius: 2px;
+    }
+
+    .bg-gradient-blue {
+        background: linear-gradient(135deg, #e0f7fa, #c8e6f7);
+    }
+
+    .bg-gradient-yellow {
+        background: linear-gradient(135deg, #fff3cd, #fff8e1);
+    }
+
+    .bg-gradient-softgray {
+        background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    }
+
+    .custom-card {
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        background-color: #fcbf49;
+        border: none;
+        color: #003049;
+        font-weight: 500;
+    }
+
+    .btn-primary:hover {
+        background-color: #ffd95c;
+        color: #003049;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #fcbf49;
+        color: #003049;
+    }
+
+    textarea,
+    input {
+        border-radius: 8px;
+    }
+
+    ul li::marker {
+        color: #fcbf49;
+    }
+</style>
+
+<!-- 🚀 Intro Section -->
+<section class="bg-gradient-blue py-5 text-center">
+    <div class="container">
+        <h2 class="section-title">About Car2Go</h2>
+        <div class="section-divider"></div>
+        <p class="lead">Car2Go is committed to making car rentals smooth, affordable, and enjoyable across Kenya.</p>
+    </div>
+</section>
+
+<!-- 🚗 Why We're Different -->
+<section class="bg-white py-5">
+    <div class="container">
+        <h4 class="section-title">What Makes Us Different</h4>
+        <div class="section-divider"></div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">✅ Easy online booking & instant confirmations</li>
+            <li class="list-group-item">✅ Affordable pricing with no hidden fees</li>
+            <li class="list-group-item">✅ Wide range of vehicles: economy, luxury, SUVs</li>
+            <li class="list-group-item">✅ Clean, insured & well-maintained vehicles</li>
+            <li class="list-group-item">✅ Friendly 24/7 customer support</li>
+        </ul>
+    </div>
+</section>
+
+<!-- 📊 Stats -->
+<section class="bg-gradient-softgray py-5 text-center">
+    <div class="container">
+        <h4 class="section-title">Why Customers Love Us</h4>
+        <div class="section-divider"></div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="custom-card alert alert-primary">🚗 <br><strong>100+ Cars</strong></div>
+            </div>
+            <div class="col-md-3">
+                <div class="custom-card alert alert-success">😊 <br><strong>2,000+ Happy Renters</strong></div>
+            </div>
+            <div class="col-md-3">
+                <div class="custom-card alert alert-info">⏱️ <br><strong>5-Minute Booking</strong></div>
+            </div>
+            <div class="col-md-3">
+                <div class="custom-card alert alert-warning">📍 <br><strong>Nationwide Reach</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 🌟 Testimonials -->
+<section class="bg-gradient-yellow py-5">
+    <div class="container">
+        <h4 class="section-title">What Our Clients Say</h4>
+        <div class="section-divider"></div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="custom-card card h-100 p-3">
+                    <p>"Car2Go made our vacation in Mombasa so easy. Clean car, great service, no stress!"</p>
+                    <small class="text-muted">— Faith K.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-card card h-100 p-3">
+                    <p>"Affordable pricing and I got the exact car I saw on the site. Highly recommended."</p>
+                    <small class="text-muted">— Brian M.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ❓ FAQ Section -->
+<section class="bg-white py-5">
+    <div class="container">
+        <h4 class="section-title">FAQs</h4>
+        <div class="section-divider"></div>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="q1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1"
+                        aria-expanded="true">
+                        What documents do I need to rent a car?
+                    </button>
+                </h2>
+                <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">You need a valid driver's license and national ID or passport.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="q2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#a2">
+                        Can I pay via M-Pesa?
+                    </button>
+                </h2>
+                <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">Yes! We support M-Pesa payments and STK Push.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 📞 Contact Form -->
+<section class="bg-gradient-blue py-5">
+    <div class="container">
+        <h4 class="section-title text-white">Get In Touch</h4>
+        <div class="section-divider" style="background-color: #fff;"></div>
+        <form method="post" action="#">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

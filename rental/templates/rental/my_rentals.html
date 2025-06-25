@@ -1,0 +1,54 @@
+{% extends 'rental/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">My Rentals</h2>
+
+    {% if rentals %}
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Car</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Cost (Ksh)</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rental in rentals %}
+            <tr>
+                <td>{{ rental.car.name }}</td>
+                <td>{{ rental.start_date }}</td>
+                <td>{{ rental.end_date }}</td>
+                <td>{{ rental.total_cost }}</td>
+                <td>
+                    {% if rental.returned %}
+                        <span class="badge bg-success">Returned</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Ongoing</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not rental.returned %}
+                    <a href="{% url 'return_car' rental.id %}" class="btn btn-sm btn-danger mb-1">Return</a><br>
+                    {% endif %}
+                
+                    {% if not rental.paid %}
+                    <a href="{% url 'mark_as_paid' rental.id %}" class="btn btn-sm btn-success">Pay Now</a>
+                    {% else %}
+                    <span class="text-success">Paid</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">
+        You have no rentals yet.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'rental/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center mb-4">Contact Car2Go</h2>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+    </form>
+</div>
+{% endblock %}

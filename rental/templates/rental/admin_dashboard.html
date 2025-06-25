@@ -1,0 +1,86 @@
+{% extends 'rental/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-primary shadow-sm">
+                <h5>Total Cars</h5>
+                <p class="fs-4">{{ total_cars }}</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-info shadow-sm">
+                <h5>Total Rentals</h5>
+                <p class="fs-4">{{ total_rentals }}</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-warning shadow-sm">
+                <h5>Currently Rented</h5>
+                <p class="fs-4">{{ rented_out }}</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-success shadow-sm">
+                <h5>Returned Cars</h5>
+                <p class="fs-4">{{ returned }}</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-success shadow-sm">
+                <h5>Paid Rentals</h5>
+                <p class="fs-4">{{ paid_rentals }}</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="alert alert-danger shadow-sm">
+                <h5>Unpaid Rentals</h5>
+                <p class="fs-4">{{ unpaid_rentals }}</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <h4 class="mb-3">All Rentals</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>User</th>
+                    <th>Car</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Total Cost (Ksh)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rental in rentals %}
+                <tr>
+                    <td>{{ rental.user.username }}</td>
+                    <td>{{ rental.car.name }}</td>
+                    <td>{{ rental.start_date }}</td>
+                    <td>{{ rental.end_date }}</td>
+                    <td>{{ rental.total_cost }}</td>
+                    <td>
+                        {% if rental.returned %}
+                        <span class="badge bg-success">Returned</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">Ongoing</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No rentals found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

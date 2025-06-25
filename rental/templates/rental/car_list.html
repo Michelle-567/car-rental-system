@@ -1,0 +1,29 @@
+{% extends 'rental/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Browse Cars</h2>
+
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ car.name }}</h5>
+                    <p class="card-text">Ksh {{ car.price_per_day }} per day</p>
+                    {% if car.is_available %}
+                    <a href="{% url 'rent_car' car.id %}" class="btn btn-primary">Rent Now</a>
+                    {% else %}
+                    <span class="badge bg-secondary">Not Available</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">No cars available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
